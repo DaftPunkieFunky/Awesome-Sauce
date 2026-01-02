@@ -4,6 +4,7 @@ import logging
 import subprocess
 import shutil
 import sys
+import tempfile
 from typing import Optional
 from pathlib import Path
 
@@ -162,7 +163,6 @@ class CH341AFlasher:
         
         try:
             # Write data to temporary file
-            import tempfile
             temp_path = Path(tempfile.gettempdir()) / 'g5cia_ch341a_temp.bin'
             temp_path.write_bytes(data)
             
@@ -294,7 +294,6 @@ class CH341AFlasher:
             True if verification successful
         """
         try:
-            import tempfile
             verify_path = Path(tempfile.gettempdir()) / 'g5cia_ch341a_verify.bin'
             
             if self.read_chip(verify_path):

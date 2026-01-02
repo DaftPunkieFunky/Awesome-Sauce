@@ -3,6 +3,7 @@
 import logging
 import subprocess
 import shutil
+import tempfile
 from typing import Optional
 from pathlib import Path
 
@@ -114,7 +115,6 @@ class FPTFlasher:
         
         try:
             # Write data to temporary file
-            import tempfile
             temp_path = Path(tempfile.gettempdir()) / 'g5cia_fpt_temp.bin'
             temp_path.write_bytes(data)
             
@@ -159,7 +159,6 @@ class FPTFlasher:
             return False
         
         try:
-            import tempfile
             verify_path = Path(tempfile.gettempdir()) / 'g5cia_verify.bin'
             
             if self.read_bios(verify_path):
