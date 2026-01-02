@@ -378,11 +378,20 @@ Examples:
     mode_group.add_argument('--dry', action='store_true', help='Dry run (no output file)')
     mode_group.add_argument('--force', action='store_true', help='Force operation (bypass safety checks)')
     mode_group.add_argument('--rpt', action='store_true', help='Print detailed report')
+    mode_group.add_argument('--gui', action='store_true', help='Launch graphical interface')
+    
     
     args = parser.parse_args()
     
     # Setup logging
     setup_logging(args.verbose)
+    
+    # Handle GUI mode
+    if args.gui:
+        from .gui.app import G5CIAGUI
+        app = G5CIAGUI()
+        app.run()
+        return 0
     
     # Handle flash detection first
     if args.flash_detect:
