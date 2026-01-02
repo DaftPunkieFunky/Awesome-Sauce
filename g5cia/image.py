@@ -104,7 +104,7 @@ class ImageParser:
     def _find_volumes(self) -> None:
         """Scan for firmware volume headers."""
         i = 0
-        while i < len(self.data) - 0x48:  # Need at least 0x48 bytes for valid FV header
+        while i < len(self.data) - 0x2C:  # Need at least 0x2C bytes to check signature at 0x28
             # Look for _FVH signature at offset 0x28 within the volume header
             # Per UEFI PI Spec: FV header starts with ZeroVector (16 bytes), then GUID (16 bytes),
             # then FvLength (8 bytes), then Signature "_FVH" at offset 0x28
